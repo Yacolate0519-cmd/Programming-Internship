@@ -2,6 +2,7 @@ from ultralytics import YOLO
 import cv2
 import os 
 
+
 model = YOLO('models/yolov9s.pt')
 results = model('inputs/test.jpg')
 
