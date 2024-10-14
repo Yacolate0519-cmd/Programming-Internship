@@ -1,8 +1,8 @@
-n = int(input("Input: "))
-for i in range(5):
-    for j in range(5):
-        if 1<=i<=3 and 1<=j<=3 :
-            print(' ',end=' ')
+n = int(input())
+for i in range(n):
+    for j in range(n):
+        if 1 <= i <= n-2 and 1 <= j <= n-2:
+            print(' ',end = '')
         else:
-            print("#",end = ' ')
+            print('#',end = '')
     print()
