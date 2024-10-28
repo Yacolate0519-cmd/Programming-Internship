@@ -1,4 +1,4 @@
-data = list(input())
+data = list(int((input())))
 # print(data)
 def reverse(x):
     for i in range(len(data)):
