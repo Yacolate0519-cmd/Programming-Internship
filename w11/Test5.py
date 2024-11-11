@@ -41,3 +41,8 @@ rank = sorted(Dic_sort,reverse = True)
 
 for i in rank:
     print(i)
+
+print('mina',500*10*7*10)
+print('tt',400*5*4*7)
+print('cheerup',420*3*2*6)
+print('twice',900*3*2*5)
