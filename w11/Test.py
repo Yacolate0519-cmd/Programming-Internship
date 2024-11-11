@@ -1,14 +1,6 @@
-
-n = int(input("Enter the number of people: "))
+n = int(input())
 data = []
 for i in range(n):
-    a = list(input().split())
-    data.append(a)
-
-i = 0
-total_list = []
-for i in data:
+    data.append(list(input().split()))
     
-
 print(data)
-print(total_list)
