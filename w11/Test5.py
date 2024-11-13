@@ -1,48 +1,20 @@
-# 讀取輸入數據
 n = int(input("輸入影片數量: "))
-# data = []
 matrix = []
 
 for i in range(n):
     matrix.append(list(input().split()))
-# rows = data.strip().split('\n')
-
-# # print(rows)
-
-# matrix = []
-# for row in rows:
-#     item = row.split()
-#     matrix.append([item[0]]+list(map(int,item[1:])))
-
-#print(matrix) 印出matrix
-
 
 Dic_sort = {}
-
-# for i in range(len(matrix)):
-#     for j in range(1,len(matrix[i])):
-#         Dic_sort[matrix[0]] = matrix[i][j]
-# data = 1
-# data = matrix[0][1] * matrix[0][2] * matrix[0][3]
-# Dic_sort['A-FU'] = data
-# print(Dic_sort)
-
-
 for i in range(len(matrix)):
     data = 1
     for j in range(1,len(matrix[i])):
         data *= int(matrix[i][j])
         Dic_sort[matrix[i][0]] = data
 
-# print(Dic_sort)
+print(Dic_sort)
 
 print('---'*30)
-rank = sorted(Dic_sort,reverse = True)
+rank = sorted(Dic_sort.items(), key=lambda item: item[1], reverse=True)
 
-for i in rank:
-    print(i)
-
-print('mina',500*10*7*10)
-print('tt',400*5*4*7)
-print('cheerup',420*3*2*6)
-print('twice',900*3*2*5)
+for key , value in rank:
+    print(key)
