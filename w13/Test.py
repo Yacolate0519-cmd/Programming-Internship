@@ -1,33 +1,39 @@
-def decimal_to_binary(n):
-    if n == 0:
-        return '0'
-    result = ''
-    while n > 0:
-        result = str(n % 2) + result 
-        n //= 2
-    return result 
+import numpy as np
 
-def binary_to_decimal(binary_str):
-    decimal = 0  # 用來儲存十進位結果
-    length = len(binary_str)
+def convolution_2d(image, kernel):
+    # 取得圖像和濾波器的尺寸
+    img_height, img_width = image.shape
+    kernel_height, kernel_width = kernel.shape
 
-    # 從右到左逐位處理二進位數字
-    for i in range(length):
-        # 取得每一位的數字，將其轉換為整數
-        bit = int(binary_str[length - 1 - i])
-        # 計算該位的十進位值，並加入總和
-        decimal += bit * (2 ** i)
+    # 計算輸出圖像的尺寸
+    output_height = img_height - kernel_height + 1
+    output_width = img_width - kernel_width + 1
+    output = np.zeros((output_height, output_width))
 
-    return decimal
-a = '11'
-b = '1'
+    # 用雙層 for 迴圈執行卷積操作
+    for i in range(output_height):
+        for j in range(output_width):
+            # 取出圖像中與濾波器大小相同的子矩陣
+            region = image[i:i+kernel_height, j:j+kernel_width]
+            # 對子矩陣與濾波器進行逐元素乘積並求和
+            output[i, j] = np.sum(region * kernel)
+    
+    return output
 
-A = binary_to_decimal(a)
-B = binary_to_decimal(b)
+# 測試範例
+image = np.array([
+    [2,1,0,2,3],
+    [9,5,4,2,0],
+    [2,3,4,5,6],
+    [1,2,3,1,0],
+    [0,4,4,2,8]
+])
 
+kernel = np.array([
+    [1, 0, -1],
+    [1, 0, -1],
+    [1, 0, -1]
+])
 
-data = int(A) + int(B)
-
-print(data)
-
-print(decimal_to_binary(data))
+output = convolution_2d(image, kernel)
+print("Output after convolution:\n", output)

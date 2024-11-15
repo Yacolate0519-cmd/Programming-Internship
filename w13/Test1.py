@@ -29,27 +29,20 @@ def get_start_day(year,month):
         year -= 1
     k = year % 100
     j = year // 100
-    # print(k,'--',j)
-    day = ( 1 + (13 * (month + 1)) // 5 + k + k // 4 + j // 4 + 5 * j) % 7
-    return day 
+    print(k,'--',j)
+    day = (1 + (13 * (month + 1)) // 5 + k + k // 4 + j // 4 + 5 * j ) % 7
+    return (day + 5 ) % 7
 
 def display_calendar(year,month):
     day = get_days_in_month(year,month)
     number = get_start_day(year,month)
-    # d = 1
     print(day,'--',number)
     print(f'   {year}年{month}月')
     print('Mo Tu We Th Fr Sa Su')
     print('   '* number ,end = '')
-    # for i in range(4):
-    #     for j in range(7):
-    #         print(f'{d:2}',end = ' ')
-    #         d += 1
-    #     print()
-    
-    for day in range(1, day + 1):
-        print(f"{day : 2}", end = " ")
-        if (day + number) % 7 == 0:
+    for day in range(1,day + 1):
+        print(f'{day:2}',end = ' ')
+        if (number + day ) % 7 == 0:
             print()
     print()
     
@@ -68,9 +61,8 @@ print('--'*30)
 
 print(get_start_day(2023,11))
 print(get_start_day(2024,2))
-
 print('--'*30)
 
-print(display_calendar(2023,11))
-# display_calendar(2023,11)
-# print(display_calendar(2023,2))
+
+display_calendar(2023,11)
+display_calendar(2024,3)
