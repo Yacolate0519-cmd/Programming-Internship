@@ -29,7 +29,7 @@ def get_start_day(year,month):
         year -= 1
     k = year % 100
     j = year // 100
-    print(k,'--',j)
+    # print(k,'--',j)
     day = (1 + (13 * (month + 1)) // 5 + k + k // 4 + j // 4 + 5 * j ) % 7
     return (day + 5 ) % 7
 
@@ -46,23 +46,24 @@ def display_calendar(year,month):
             print()
     print()
     
-print(is_leap_year(2020))
-print(is_leap_year(1900))
-print(is_leap_year(2000))
+# print(is_leap_year(2020))
+# print(is_leap_year(1900))
+# print(is_leap_year(2000))
 
-print('--'*30)
+# print('--'*30)
 
-print(get_days_in_month(2020,2))
-print(get_days_in_month(2021,2))
-print(get_days_in_month(2021,4))
-print(get_days_in_month(2021,12))
+# print(get_days_in_month(2020,2))
+# print(get_days_in_month(2021,2))
+# print(get_days_in_month(2021,4))
+# print(get_days_in_month(2021,12))
 
-print('--'*30)
+# print('--'*30)
 
-print(get_start_day(2023,11))
-print(get_start_day(2024,2))
-print('--'*30)
+# print(get_start_day(2023,11))
+# print(get_start_day(2024,2))
+# print('--'*30)
 
 
 display_calendar(2023,11)
+print('--'*15)
 display_calendar(2024,3)
