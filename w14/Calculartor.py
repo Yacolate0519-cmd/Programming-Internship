@@ -1,13 +1,14 @@
 from tkinter import *
+from PIL import Image , ImageTk
 
 def clear():
     progress.set('')
-    preview.delete(0, 'end')  # 修正了 Entry 的操作方法
+    preview.delete(0, 'end') 
 
 def pressButton(button):
     if button == '=':
         try:
-            result = eval(preview.get())  # 將 `get` 加上括號以正確調用
+            result = eval(preview.get())  
             preview.delete(0, END)
             preview.insert(END, str(result))
         except Exception as e:
@@ -17,21 +18,19 @@ def pressButton(button):
         preview.delete(0, END)
     else:
         preview.insert(END, button)
-
-# 主視窗
+        
 root = Tk()
 root.title('計算機')
 root.geometry('400x600')
+root.config(bg = '#E8C483')
 
-# 進度顯示
 progress = StringVar()
 progress.set('')
 
-Label(root, textvariable=progress).grid(row=0, column=0, columnspan=4)
+# Label(root, textvariable=progress).grid(row=0, column=0, columnspan=4)
 preview = Entry(root, textvariable=progress, justify=RIGHT, font=('Arial', 20))
 preview.grid(row=1, column=0, columnspan=4)
 
-# 按鈕配置
 buttons = [
     '7', '8', '9', '/',
     '4', '5', '6', '*',
@@ -40,7 +39,7 @@ buttons = [
     '='
 ]
 
-# 動態生成按鈕
+
 row = 3
 col = 0
 for i, button in enumerate(buttons):
@@ -48,12 +47,13 @@ for i, button in enumerate(buttons):
         root,
         text=button,
         font=('Arial', 20, 'bold'),
-        command=lambda b=button: pressButton(b)
-    ).grid(row=row, column=col, padx=5, pady=5, ipadx=10, ipady=10)
+        bg = '#FFFFFF',
+        command=lambda b=button: pressButton(b),
+    ).grid(row = row , column = col , padx = 10 , pady = 10 , ipadx = 15, ipady = 15 , sticky = 'nsew')
     
     col += 1
-    if col > 3:  # 每行放置 4 個按鈕
+    if col > 3:  
         col = 0
         row += 1
-
+        
 root.mainloop()
