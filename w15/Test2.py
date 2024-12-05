@@ -7,7 +7,6 @@ root.geometry("500x400+100+50")
 
 player = 0  
 
-
 def PressButton(btn):
     global player
     if btn['text'] == ' ':  
