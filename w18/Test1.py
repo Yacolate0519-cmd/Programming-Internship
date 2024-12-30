@@ -110,8 +110,10 @@ def Imgae_View():
     def right_image():
         global img , images , index
         index += 1
+
         if index > len(images) - 1:
             index = 0
+            
         img = ImageTk.PhotoImage(file =  images[index])
         show.config(image = img)
         print(index)
