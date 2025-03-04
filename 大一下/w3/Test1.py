@@ -1,78 +1,102 @@
 class BankAccount:
-    def __init__(self , name , balance = 0 , billing = 0):
+    def __init__(self , name , balance , billing = 0):
         self.name = name
         self.balance = balance
         self.billing = billing
-
+    
     def deposit(self , amount):
         self.balance += amount
-
+    
     def withdraw(self , amount):
         total = self.balance - amount
         if total < 0:
             print('餘額不足')
         else:
             self.balance -= amount
-
+    
     def search_balance(self):
-        return (f'帳戶持有人: {self.name},餘額: {self.balance}')
-
-    def history(self):
-        pass
-
+        print('--' * 30 )
+        print(f'帳戶持有者:{self.name}, 餘額: {self.balance}')
+        print('--' * 30 )
+    
+    def history_billing(self):
+        print('None')
+    
 class BankSystem:
     def __init__(self):
-        self.accounts = []
+        self.accounts = {}
+
+    def create_account(self , owner , initial_balance = 0 , billing = 0):
+        new_customer = BankAccount(owner , initial_balance , billing)
+        self.accounts[owner] = new_customer
     
-    def create_account(self , owner , initial_balance = 0):
-        new_customer = BankAccount(owner , initial_balance)
-        self.accounts.append(new_customer)
-
     def get_account(self , owner):
-        for account in self.accounts:
-            if account.name == owner:
-                BankAccount.search_balance()
-            else:
-                print('查無此人')
-
+        if owner in self.accounts:
+            self.accounts[owner].search_balance()
+        else:
+            print('查無帳戶')
+        
     def deposit(self , owner , amount):
-        for account in self.accounts:
-            if account.name == owner:
-                BankAccount.deposit(amount)
-            else:
-                print('查無此人')
-
-    def withdraw(self , amount):
-        pass
-
+        if owner in self.accounts:
+            self.accounts[owner].deposit(amount)
+    
+    def withdraw(self , owner , amount):
+        if owner in self.accounts:
+            self.accounts[owner].withdraw(amount)
+    
+    def display_accounts(self):
+        print('--' * 30 + '\n帳戶列表')
+        for account in self.accounts.values():
+            print(account.name)
+        print('--' * 30)
+    
     def transfer(self , owner , receive , amount):
-        pass
+        if owner in self.accounts and receive in self.accounts:
+            owner_account = self.accounts[owner]
+            receive_account = self.accounts[receive]
 
-    def display_account(self):
-        pass
-
+            if owner_account.balance >= amount:
+                owner_account.withdraw(amount)
+                receive_account.deposit(amount)
+                print('轉帳成功')
+            else:
+                print('餘額不足')
+        else:
+            print('查無帳戶')        
+        
+        
 if __name__ == '__main__':
     system = BankSystem()
-    control = int(input('1.創建帳戶\n2.存款\n3.提款\n4.查詢餘額\n5.轉帳6.查詢帳戶\n7.離開系統\n'))
     while 1:
+        control = int(input("1.創建帳戶\n2.存款\n3.提款\n4.查詢餘額\n5.轉帳\n6.顯示帳戶列表\n7.離開系統\n"))
         if control == 1:
-            name , balance = input('輸入帳戶名稱以及金額: ').split()
-            system.create_account(name , balance)
-
+            name , balance , billing = input('輸入資訊: ').split()
+            balance = int(balance)
+            billing = int(billing)
+            system.create_account(name , balance , billing)
+            
         elif control == 2:
-            pass
-
+            owner , amount = input('輸入存款人以及金額: ').split()
+            amount = int(amount)
+            system.deposit(owner , amount)
+        
         elif control == 3:
-            pass
-
+            owner , amount = input("輸入提款人以及金額: ").split()
+            amount = int(amount)
+            system.withdraw(owner , amount)
+        
         elif control == 4:
-            pass
-
+            owner = input('帳戶持有者姓名: ')
+            system.get_account(owner)
+        
         elif control == 5:
-            pass
-
+            owner , receive , amount = input('輸入轉款人以及收款人及金額: ').split()
+            amount = int(amount)
+            system.transfer(owner , receive , amount)
+            
         elif control == 6:
-            pass
-
+            system.display_accounts()
+            
         elif control == 7:
             break
+        
