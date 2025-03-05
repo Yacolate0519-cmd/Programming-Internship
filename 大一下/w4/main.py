@@ -39,7 +39,7 @@ class FoodOrderingSystem:
     def __init__(self):
         self.menus = {}
         menu = Menu()
-        self.menus[] = menu
+        # self.menus[] = menu
         
     def show_menu(self):
 
