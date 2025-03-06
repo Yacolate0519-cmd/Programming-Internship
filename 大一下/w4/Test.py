@@ -75,25 +75,6 @@ class FoodOrderingSystem(Menu , Order):
                 print(f'訂單客戶: {key}, 訂單: {value}')
                 print('--'*30)
 
-
-
-class Customer(FoodOrderingSystem):
-    def __init__(self , name , contact):
-        self.name = name
-        self.contact = contact
-    
-    def create_ordering(self, name, shoppingList):
-        return super().create_ordering(name, shoppingList)
-    
-    def remove_item(self, name):
-        return super().remove_item(name)
-    
-    def update_ordering(self, name, shoppingList):
-        return super().update_ordering(name, shoppingList)
-    
-    def show_all_ordering(self):
-        return super().show_all_ordering()
-
 import os 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -101,26 +82,57 @@ def clear():
 if __name__ == '__main__':
 
     menu = Menu()
-    menu.add_item('漢堡', 100)
-    menu.add_item('薯條', 50)
-    menu.add_item('可樂', 45)
-
-    print('-'*30)
-
-    system = FoodOrderingSystem()
-    
-    system.add_item('測試', 100)
-    system.remove_item('可樂')
-
-    system.create_ordering('Yacolate' , ['漢堡','可樂'])
-    system.search_ordering('Yacolate')
-
-    print('Test')
-
-    system.create_ordering('Gplee' , ['漢堡','薯條','可樂'])
-    system.update_ordering('Gplee' , ['可樂','薯條','要餐具'])
-    system.remove_ordering('Yacolate') 
-    system.show_all_ordering()
+    menu.add_item('漢堡' , 100)
+    menu.add_item('薯條' , 40)
+    menu.add_item('可樂' , 45)
 
     while 1:
-        
+        system = FoodOrderingSystem()
+        control = input('1.Admin\n2.Memeber\n3.Exit\n')
+        if control == '1':
+            pass
+        elif control == '2':
+            while 1:
+                control = input('1.購物車\n2.Choose Ordering\n3.Send Ordering\n4.Exit\n')
+                if control == '1':
+                    pass
+                
+                elif control == '2':
+                    while 1:
+                        control = input('1.Show Menu\n2.Add_or_remove Item\n3.Ordering\n4.Exit\n')
+                        if control == '1':
+                            menu.show_menu()
+
+                        elif control == '2':
+                            control = input('1.Add_Item\n2.Remove_Item\n3.Update_item\n4.Search_Ordering\n5.quit\n') 
+                            if control == '1':
+                                menu.add_item()
+
+                            elif control == '2':
+                                menu.remove_item()
+
+                            elif control == '3':
+                                menu.update_ordering()
+
+                            elif control == '4':
+                                menu.search_ordering()
+
+                            elif control == '5':
+                                break   
+                        
+                        elif control == '3':
+                            pass
+
+                        elif control == '4':
+                            break
+
+
+                elif control == '3':
+                    pass
+                
+                elif control == '4':
+                    break
+
+        elif control == '3':
+            break
+    print('🍔感謝使用🍟')
