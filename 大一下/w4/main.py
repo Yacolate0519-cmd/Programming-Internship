@@ -1,91 +1,49 @@
-class Menu:
-    def __init__(self):
-        self.main = {'漢堡' : 80 , '薯條' : 60}
-        self.beverage = {'可樂' : 45}
-        self.dessert = {'蛋糕' : 100}
+class StudentCourse:
+    def __init__(self , name , password , course_name , grade):
+        self.name = name
+        self.__password = password
+        self.course_name = course_name
+        self.__grade = grade
 
-    def show_menu(self):
-        print(f'主食: {self.main}')
-        print(f'飲料: {self.beverage}')
-        print(f'甜點: {self.dessert}')
+    def getter_password(self):
+        return self.__password
 
-    def add(self , item , price):
-        self.main[item] = price
+    def setter_password(self , old_pass , new_pass):
+        if old_pass != new_pass:
+            print(self.__password)
+            self.__password = new_pass
+            print(f'密碼修改成功!\n{self.__password}')
+        else:
+            print("舊密碼不可與新密碼相同")
 
-    def remove(self , item):
-        self.main.pop(item)
+    def getter_grade(self , password):
+        if password == self.__password:
+            return f'Current grade: {self.__grade}'
+        else:
+            print('密碼錯誤\t不可查詢成績')
+            return ''
+        
+    def setter_grade(self , password ,new_grade):
+        if password == self.__password:
+            if 0 <= new_grade <= 100:
+                self.__grade = new_grade
+                print('成績修改成功!')
+            else:
+                print('請輸入正確成績')
+        else:
+            print('密碼錯誤\t不可修改成績')
 
-    def change(self , item , price):
-        self.main[item] = price
-
-class FoodItem(Menu):
-    pass
-
-class Customer:
-    def __init__(self):
-        self.customers = {}
+    def __str__(self):
+        return f'{self.name} is taking [{self.course_name}] and has a grade of {self.__grade}'
     
-    def create_customer(self , name , contact):
-        self.customers[name] = contact
-        
-    def show_customers(self):
-        print('--' * 30)
-        for i in self.customers.items():
-            print(i)
-        print('--' * 30)
-        
-
-class FoodOrderingSystem:
-    def __init__(self):
-        self.menus = {}
-        menu = Menu()
-        # self.menus[] = menu
-        
-    def show_menu(self):
-
-        self.menus.show_menu()
-
-    def add_remove(self , temp):
-        temp = int(temp)
-        if temp == 1:
-            pass
-
-    def order(self):
-        pass
-
-    def search_order(self):
-        pass
-
-
 if __name__ == '__main__':
+    student = StudentCourse("Yacolate" , "950519" , "Data structer" , 50)
 
-    system = FoodOrderingSystem()
-    system.show_menu()
+    print(student)
+    student.setter_password('950519', "test123")
 
+    print(student.getter_grade('test123'))
 
-
-    # user = int(input("輸入使用者身份(請輸入代號): 1.admin 2.member\n"))
-
-    # system = FoodOrderingSystem()
-
-    # if user == 1:
-    #     while 1:
-    #         control = int(input('1.菜單與訂單管理(修理、新增)\n2.會員管理\n3.管理訂單\n4.離開系統\n'))
-    #         if control == 1:
-    #             system.show_menu()
-
-    #         if control == 2:
-    #             pass
-            
-    #         if control == 3:
-    #             temp = input("1.新增\n2.刪除\n3.調整價格\n")
-    #             system.add_remove(temp)
-
-    #         if control == 4:
-    #             break
-            
-            
-
-    # if user == 2:
-    #     pass
-
+    print(student)
+    student.setter_grade('test123',100)
+    print(student)
