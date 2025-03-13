@@ -1,20 +1,32 @@
 class Person:
-    rate = 0.3
+    member = 0
     def __init__(self , name , balance):
         self.name = name
         self.balance = balance
-        self.set_new_rate()
+        Person.increase_member()
 
-    def set_new_rate(cls):
-        cls.rate = 0.2
+    @classmethod
+    def get_member(cls):
+        print(cls.member)
+
+    @staticmethod
+    def increase_member():
+        Person.member += 1
     
-    def return_rate(cls):
-        return cls.rate
+    @staticmethod
+    def decrease_member():
+        Person.member -= 1
 
+    def __del__(self):
+        Person.decrease_member()
+    
 '''
 新增__del__方法修改學生人數
 '''
 
 if __name__ == '__main__':
-    p1 = Person('yacolate' , 500)
-    print(p1.return_rate())
+    p1 = Person('ycolate' , 500)
+    Person.get_member()
+    del p1
+    p2 = Person("Gplee" , 500)
+    Person.get_member()

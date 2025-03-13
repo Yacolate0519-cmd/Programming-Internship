@@ -1,5 +1,7 @@
 class CStudent:
+    
     total_student = 0
+
     def __init__(self , id , name , department , email , birthday , courses):
         self.id = id 
         self.name = name
@@ -11,6 +13,14 @@ class CStudent:
 
     def __str__(self):
         return ('--'*30+'\n'+f'ID : {self.id}\nName: {self.name}\nDepartment: {self.department}\nEmail: {self.__email}\nBirthday: {self.__birthday}\nCourses: {self.__courses}\n'+'--'*30)
+
+    @staticmethod 
+
+    def decrease_student():
+        CStudent.total_student -= 1
+
+    def __del__(self):
+        CStudent.decrease_student()
 
     @classmethod
     def add_total_student(cls):
@@ -65,6 +75,8 @@ class CStudent:
             print('輸入錯誤')
             
 
+
+
 if __name__ == '__main__':
     student1 = CStudent('S109102345' , '張三' , 'IECS' , 'zs100232@gmail.com' , '2000-02-02' ,
                         {'基礎程式' : 95 , '數學' : 88 , '專題實務' : 75})
@@ -93,3 +105,10 @@ if __name__ == '__main__':
     print('--'*13+'移除專題成績'+'--'*14)
     student1.update_courses('remove' , '專題實務')
     print(student1)
+    print('\n')
+    print('--'*13+'使用靜態方法修改類別屬性'+'--'*14)
+    print(f'目前學生總數: {CStudent.total_student}')
+    print('--修改--')
+    del student1
+    print(f'目前學生總數: {CStudent.total_student}')
+    
