@@ -36,7 +36,7 @@ class PokemonType(Pokemon):
             skill = self.skill[skill_name]
             if self.fp >= skill['require_fp']:
                 damage = skill['damage'] * self.restraint(target)
-                print(f"{self.name} 使用 {skill_name} 消耗魔力: {skill[str(require_fp)]}")
+                print(f"{self.name} 使用 {skill_name} 消耗魔力: {skill["require_fp"]}")
                 target.take_damage(damage)
                 self.fp -= skill['require_fp']  
             else:

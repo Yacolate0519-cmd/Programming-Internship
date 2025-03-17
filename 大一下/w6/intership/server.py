@@ -36,7 +36,7 @@ class PokemonType(Pokemon):
             skill = self.skill[skill_name]
             if self.fp >= skill['require_fp']:
                 damage = skill['damage'] * self.restraint(target)
-                print(f"{self.name} 使用 {skill_name} 消耗魔力: {skill[str(require_fp)]}")
+                print(f"{self.name} 使用 {skill_name} 消耗魔力: {skill["require_fp"]}")
                 target.take_damage(damage)
                 self.fp -= skill['require_fp']  
             else:
@@ -69,14 +69,25 @@ import random
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')   
 
+import socket
 
 if __name__ == '__main__':
+    server_socket = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
+    server_socket.bind(('10.22.75.52' , 1024))
+    server_socket.listen()
+    print('伺服器已啟動，等待玩家連線...')
+
+    client_socket , addr = server_socket.accept()
+
     characters = {
     'cha1' : Charmander('🔥小火龍' , 100 , 60 , 'fire' ) ,
     'cha2' : Blastoise('🌊傑尼龜' , 100 , 30 , 'water' ),
-    'cha3' : Bulbassaur('🌿妙挖種子' , 100 , 90 , 'grass' )}
+    'cha3' : Bulbassaur('🌿妙挖種子' , 100 , 90 , 'grass' )
+    }
 
-    choose = input('決定你想要的角色: \n1.小火龍\n2.傑尼龜\n3.妙蛙種子\n')
+    print('決定你想要的角色: \n1.小火龍\n2.傑尼龜\n3.妙蛙種子\n')
+    choose = client_socket.recv(1024).decode('utf-8')
+    print(choose)
     if choose == '1':
         cha = characters['cha1']
 
@@ -85,7 +96,7 @@ if __name__ == '__main__':
 
     elif choose == '3':
         cha = characters['cha3']
-    clear()
+    # clear()
     print(f'已選擇角色: {cha.name}')
     enemy = random.choice([i for key , i , in characters.items() if i != cha])
     print(f'發現敵人: {enemy.name} , 血量: {enemy.hp}')
@@ -97,7 +108,9 @@ if __name__ == '__main__':
         for i , skill_name in enumerate(cha.skill.keys(),1):
             print(f'{i}. {skill_name} (傷害: {cha.skill[skill_name]['damage']} , FP消耗: {cha.skill[skill_name]['require_fp']})')
         
-        choice = int(input('輸入技能代號: '))
+        print('輸入技能代號: ')
+
+        choice = int(client_socket.recv(1024).decode('utf-8'))
         skill_list = list(cha.skill.keys())
         skill_name = skill_list[choice - 1]
         cha.attack(skill_name , enemy)
@@ -116,3 +129,5 @@ if __name__ == '__main__':
 
         print('--'*30)
 print('\n\n\t\t\t\t⛳感謝遊玩⛳')
+
+
