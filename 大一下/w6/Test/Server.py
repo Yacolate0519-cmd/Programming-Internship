@@ -85,7 +85,7 @@ if __name__ == '__main__':
         client.send(msg.encode('utf-8'))
 
     server = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
-    server.bind(('10.22.75.52' , 1024))
+    server.bind(('172.20.10.4' , 1024))
     server.listen()
     print('Server already start up...')
 

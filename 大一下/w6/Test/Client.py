@@ -1,7 +1,7 @@
 import socket
 
 client = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
-client.connect(('10.22.75.52' , 1024))
+client.connect(('172.20.10.4' , 1024))
 
 def receive_and_print():
     try:
