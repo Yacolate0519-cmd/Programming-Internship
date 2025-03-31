@@ -1,47 +1,55 @@
+# testServer.py
 import socket
 import threading
 
-name = ""
-def recv(sock , addr):
+name = ''
+
+def recv(sock, addr):
     global name
-    sock.sendto(("Hi, " + name).encode('utf-8') , addr)
+    # 傳送歡迎訊息
+    sock.sendto(name.encode('utf-8'), addr)
+    sock.sendto(("Hi, " + name).encode('utf-8'), addr)
+
     while True:
-        recvMsg = sock.recv(1024).decode('utf-8').strip()
-        print(f'{name}: {recvMsg}')
-        if recvMsg.lower() == 'exit':
+        try:
+            recvMsg, _ = sock.recvfrom(1024)
+            recvMsg = recvMsg.decode('utf-8').strip()
+            print(f'{name}: {recvMsg}')
+            if recvMsg.lower() == 'exit':
+                break
+        except:
             break
 
-def send(sock , addr):
-    global name
-    while 1:
+def send(sock, addr):
+    while True:
         sendMsg = input()
-        sock.sendto((sendMsg).encode('utf-8') , addr)
+        sock.sendto(sendMsg.encode('utf-8'), addr)
         if sendMsg.lower() == 'exit':
             break
 
-if __name__ == "__main__":
-    server = socket.socket(socket.AF_INET , socket.SOCK_DGRAM)
-    host = '10.22.75.52'
+if __name__ == '__main__':
+    server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    host = '0.0.0.0'  # 接受任何來源
     port = 1024
-    try:
-        server.bind((host , port))
-        print('Server stared')
-        msg , clientAddr = server.recvfrom(1024)
-        print(f'{msg.decode('utf-8')}\t Connection established from {clientAddr}')
-        tr = threading.Thread(target = recv , args = (server , clientAddr) , daemo = True)
-        ts = threading.Thread(target = send , args = (server , clientAddr))
 
+    try:
+        server.bind((host, port))
+        print("✅ Server started, waiting for connection...")
+
+        msg, clientAddr = server.recvfrom(1024)
         name = msg.decode('utf-8')
+        print(f'🟢 {name} connected from {clientAddr}')
+
+        tr = threading.Thread(target=recv, args=(server, clientAddr), daemon=True)
+        ts = threading.Thread(target=send, args=(server, clientAddr))
+
         tr.start()
         ts.start()
         tr.join()
         ts.join()
 
-    except OSError as e:
-        print(e)
-        print('Server stopped')
-    
     except Exception as e:
-        print(e)
+        print(f'❌ Server error: {e}')
+
     server.close()
-    print("The chat room is closed")
+    print("🔴 Chat server closed.")

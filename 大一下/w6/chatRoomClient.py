@@ -24,8 +24,7 @@ def main():
     global name
     name = input('Enter your name: ')        
     print('--' * 5 , name , '--' * 5)
-    client_socket = socket.socket(socket.AF_INET,
-                                  socket.SOCK_DGRAM)
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     serverAddr = "10.144.252.228"
     port = 1688
     server = (serverAddr , port)

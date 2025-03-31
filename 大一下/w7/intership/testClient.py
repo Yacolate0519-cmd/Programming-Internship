@@ -1,35 +1,34 @@
+# testClient.py
 import socket
 import threading
 
-name = ''
-
-def recv(sock , addr):
-    global name
-    sock.sendto(name.encode('utf-8') , addr)
-    while 1:
-        recvMsg = sock.recv(1024).decode('utf-8')
-        if recvMsg.lower() == 'exit':
+def recv(sock):
+    while True:
+        try:
+            recvMsg, _ = sock.recvfrom(1024)
+            print("👤 Server:", recvMsg.decode('utf-8').strip())
+        except:
             break
-        else:
-            print(f'Server: {recvMsg}')
 
-def send(sock , addr):
-    global name
-    while 1:
+def send(sock, addr):
+    while True:
         sendMsg = input()
-        sock.sendto((sendMsg).encode('utf-8') , addr)
+        sock.sendto(sendMsg.encode('utf-8'), addr)
         if sendMsg.lower() == 'exit':
             break
 
-if __name__ == "__main__":
-    print("Welcome to chat room!")
-    name = input("Enter your name: ")
-    server = socket.socket(socket.AF_INET , socket.SOCK_DGRAM)
+if __name__ == '__main__':
+    client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    host = '192.168.1.110'
+    port = 1024
+        
     try:
-        host = '10.22.75.52'
-        port = 1024
-        tr = threading.Thread(target = recv , args = (server , (host , port)), daemon = True)
-        ts = threading.Thread(target = send , args = (server , (host , port)))
+        name = input("請輸入你的名字：")
+        client.sendto(name.encode('utf-8'), serverAddr)
+
+        tr = threading.Thread(target=recv, args=(client,), daemon=True)
+        ts = threading.Thread(target=send, args=(client, serverAddr))
+
         tr.start()
         ts.start()
         tr.join()
@@ -37,10 +36,8 @@ if __name__ == "__main__":
 
     except OSError as e:
         print(e)
-        print("Server stopped")
+        print('Server already close')
     
     except Exception as e:
         print(e)
-    print('The chat room is closed')
-
-        
+    print("The chat room already closed")
