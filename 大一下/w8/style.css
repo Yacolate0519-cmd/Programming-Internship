@@ -1,0 +1,26 @@
+#footer {
+    margin-top: 1px;
+    border-radius: 0 0 10px 10px;
+    background-color: lightblue;
+    text-align: center;
+    padding: 10px;
+}
+
+#title {
+    margin-top: 1px;
+    /* background-color: red; */
+    background-image: linear-gradient(to bottom,  #E0CEFF , #a4c5ff);
+    padding: 10px;
+}   
+
+#content {
+    margin-top: 1px;
+    background-image: linear-gradient(to top, #f4a261 , #e9c46a);
+    padding: 10px;
+}
+
+#habit {
+    margin-top: 1px;
+    background-image: linear-gradient(to top, #2ec4b6 , #cbf3f0);
+    padding: 10px;
+}
