@@ -1,121 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Single Page Site</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-    
-    <!-- title -->
-    <nav class="navbar bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#images/icon.jpg">
-            <img src="images/icon.jpg" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
-            <h1>Yacolate</h1>
-          </a>
-        </div>
-      </nav>
+<body id="body">
 
-      <!-- link -->
-      <ul class="nav justify-content-center">
+  <div class="row">
+    <div class="col-4">
+      <div class="row">
         
-        <li class="nav-item">
-            <a class="nav-link" href="#title">個人簡介</a>
-          </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#habit">興趣/技能</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#content">聯絡方式</a>
-        </li>
-      
-     </ul>
-
-
-      <!-- logo -->
-      <div class="container px-4 text-center">
-        <div class="row gx-5">
-          <div class="col">
-           <div class="p-3 border bg-light">
-
-            <img src="images/github.png" alt="error" style = 'display: block; margin-left: auto; margin-right: auto; width: 20px'>
-            <a href="https://github.com/Yacolate0519-cmd">Github</a>
+        <div class="col-6">
+          <img src="images/icon.jpg" alt="error" style="display: block; margin-left: auto; margin-right: auto;">
         </div>
-          </div>
-          <div class="col">
-            <div class="p-3 border bg-light">
-                <img src="images/instagram.png" alt="error" style="display: block; margin-left: auto; margin-right: auto; width: 30px">
-                <a href="https://www.instagram.com/">Instagram</a>
-            </div>
-          </div>
 
-          <div class="col">
-            <div class="p-3 border bg-light">
-                 <img src="images/spotigy.png" alt="error" style="display: block; margin-left: auto; margin-right: auto; width: 20px">
-                <a href="https://open.spotify.com/user/317gdh35rbmrn4yv66pjnpd4bx3y?si=4d50e62296cd40c8">Spotify</a>
-                </div>
-          </div>
+        <div class="col-6">
+          <h1>Yacolate</h1>
+        </div>
 
+      </div>
+    </div>
+
+    <div class="col-8">
+      <div id="home" class="section-box section-glass">
+        <div class="row g-3 mt-3">
+          <div class="col-md-6">
+            <a href="https://github.com/Yacolate0519-cmd" class="card social-card text-decoration-none text-dark">
+              <div class="card-body d-flex align-items-center">
+                <img src="images/github.png" alt="GitHub" class="social-icon" />
+                <h5 class="mb-0">GitHub</h5>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="https://www.instagram.com/yacolate/" class="card social-card text-decoration-none text-dark">
+              <div class="card-body d-flex align-items-center">
+                <img src="images/instagram.png" alt="Instagram" class="social-icon" style="display: block;"/>
+                <h5 class="mb-0">Instagram</h5>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="https://www.threads.net/@yacolate" class="card social-card text-decoration-none text-dark">
+              <div class="card-body d-flex align-items-center">
+                <img src="images/thread.png" alt="Threads" class="social-icon"/>
+                <h5 class="mb-0">Threads</h5>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="https://open.spotify.com/user/317gdh35rbmrn4yv66pjnpd4bx3y" class="card social-card text-decoration-none text-dark">
+              <div class="card-body d-flex align-items-center">
+                <img src="images/spotify.png" alt="Spotify" class="social-icon"/>
+                <h5 class="mb-0">Spotify</h5>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
 
-    
+  <!-- 導覽列 -->
+  <ul class="nav nav-pills nav-justified my-custom-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#home">Home</a> 
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#favorite">Favorite</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#habit">Habit</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#content">Content</a>
+    </li>
+  </ul>
 
-    <section id = 'title'>
-        <h3>個人簡介 About me</h3>
-        <ul>
-            <li>畢業於竹南高中</li>
-            <li>我是黃軍博</li>
-            <li>害羞</li>
-            <li>目標：活著</li>
-            <li></li>
-            <li></li>
-            <li></li>
-           
-            <li></li>
-        </ul>
-    </section>
+  <!-- Favorite 區塊 -->
+  <div id="favorite" class="section-box section-orange">
+    <h1>⭐ Favorite Page</h1>
+    <p>這裡是收藏區內容。</p>
+  </div>
 
+  <!-- Habit 區塊 -->
+  <div id="habit" class="section-box section-green">
+    <h1>📌 Habit Page</h1>
+    <p>這裡是習慣追蹤區。</p>
+  </div>
 
-    <section id = 'habit'>
-        <h3>興趣/技能</h3>
-        <ul>
-            <li>Coding</li>
-            <li>Playing video game</li>
-            <li>Work out</li>
-            <li></li>
-            <li></li>
-      
-        </ul>
-    </section>
+  <!-- Content 區塊 -->
+  <div id="content" class="section-box section-blue mb-5">
+    <h1>📚 Content Page</h1>
+    <p>這裡是內容展示區。</p>
+  </div>
 
-    <section id = 'content'>
-        <h3>聯絡方式</h3>
-        <ol>
-            <li>Github: https://github.com/</li>
-            <li>Steam</li>
-            <li>電話號碼: 0928590005</li>
-            <li></li>
-            <li></li>
-            <li></li>
-            
-        </ol>
-    </section>
+  
 
-    <section id = 'footer'>
-        <h5>
-            版權所有
-            © 2025 [黃軍博]
-        </h5>
-    </section>
-
-
-
-  </body>
+</body>
 </html>

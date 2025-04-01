@@ -1,26 +1,93 @@
-#footer {
-    margin-top: 1px;
+html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background: linear-gradient(-45deg, #E0CEFF  , #A4C5FF);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", sans-serif;
+  }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .my-custom-nav {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    margin: 20px auto;
+    padding: 10px;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+  }
+  
+  .my-custom-nav .nav-link {
+    color: white;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .my-custom-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+  
+  .my-custom-nav .nav-link.active {
+    background-color: #A4C5FF;
+    color: #333;
+  }
+  
+  .social-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  #favorite {
+    margin: 40px 20px;
+    /* background-image: linear-gradient(to top, #72ddf7, #cbf3f0); */
+    background-color: rgb(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 40px 20px;
+    border-radius: 20px;
+  }
+
+  #habit {
+    margin: 40px 20px;
+    /* background-image: linear-gradient(to top, #72ddf7, #cbf3f0); */
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 40px 20px;
+    border-radius: 20px;
+  }
+
+  #content {
+    margin: 40px 20px;
+    /* background-image: linear-gradient(to top, #b388eb, #8093f1); */
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 40px 20px;
+    border-radius: 20px;
+  }
+  
+  #footer {
+    margin: 40px 20px 10px;
     border-radius: 0 0 10px 10px;
     background-color: lightblue;
     text-align: center;
     padding: 10px;
-}
-
-#title {
-    margin-top: 1px;
-    /* background-color: red; */
-    background-image: linear-gradient(to bottom,  #E0CEFF , #a4c5ff);
-    padding: 10px;
-}   
-
-#content {
-    margin-top: 1px;
-    background-image: linear-gradient(to top, #f4a261 , #e9c46a);
-    padding: 10px;
-}
-
-#habit {
-    margin-top: 1px;
-    background-image: linear-gradient(to top, #2ec4b6 , #cbf3f0);
-    padding: 10px;
-}
+  }
