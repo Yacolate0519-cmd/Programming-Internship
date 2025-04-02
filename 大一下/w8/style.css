@@ -4,8 +4,10 @@ html {
   
   body {
     background: linear-gradient(-45deg, #E0CEFF  , #A4C5FF);
+    /* background: linear-gradient(-45deg, ##000  , #ffffff); */
+    /* background: linear-gradient(-45deg, #f72585  , #b5179e , #7209b7 , #560bad , #3f37c9 , #4895ef , #4cc9f0); */
     background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    animation: gradient 5s ease infinite;
     margin: 0;
     padding: 0;
     font-family: "Helvetica Neue", sans-serif;
@@ -59,7 +61,6 @@ html {
 
   #favorite {
     margin: 40px 20px;
-    /* background-image: linear-gradient(to top, #72ddf7, #cbf3f0); */
     background-color: rgb(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     padding: 40px 20px;
@@ -68,7 +69,6 @@ html {
 
   #habit {
     margin: 40px 20px;
-    /* background-image: linear-gradient(to top, #72ddf7, #cbf3f0); */
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     padding: 40px 20px;
@@ -77,7 +77,6 @@ html {
 
   #content {
     margin: 40px 20px;
-    /* background-image: linear-gradient(to top, #b388eb, #8093f1); */
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     padding: 40px 20px;
@@ -91,3 +90,5 @@ html {
     text-align: center;
     padding: 10px;
   }
+
+  
