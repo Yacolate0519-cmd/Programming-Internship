@@ -1,3 +1,10 @@
+<?php
+    $varA = $_POST['varA'];
+    $varB = $_POST['varB'];
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,7 +35,7 @@
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="index.html">首頁</a>
+                  <a class="nav-link" aria-current="page" href="index.html">首頁</a>
                 </li>
                 
                 <li class="nav-item">
@@ -40,7 +47,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="php_test.html">php_test</a>
+                    <a class="nav-link active" href="php_test.html">php_test</a>
                 </li>
                 
                 <li class="nav-item dropdown">
@@ -66,6 +73,19 @@
           </div>
         </div>
       </nav>
+
+
+    <h2>
+        A = <?php echo $varA; ?>
+    </h2>
+
+    <h2>
+        B = <?php echo $varB; ?>
+    </h2>
+
+    <h2>
+        A + B = <?php echo $varA + $varB; ?>
+    </h2>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
   
