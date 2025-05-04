@@ -8,6 +8,7 @@ class MyLedger(SimpleLedger):
 
     def list_transcations(self):
         df = pd.DataFrame(self.transcations , columns = ['Amount' , 'Description' , 'Date' , 'Category'])
+        df = df.sort_values(by = 'Date')
         print(df)
 
     def record(self , amount , description , date , category):
@@ -15,8 +16,9 @@ class MyLedger(SimpleLedger):
 
     def list_by_date(self , start , end):
         df = pd.DataFrame(self.transcations , columns = ['Amount' , 'Description' , 'Date' , 'Category'])
-        range = (df['Date'] >= start) & (df['Date'] <= end)
-        print(df.loc[range])
+        df = df[(df['Date'] >= start) & (df["Date"] <= end)]
+        df = df.sort_values(by = 'Date')
+        print(df)
 
     def sum_by_category(self, category):
         df = pd.DataFrame(self.transcations, columns=['Amount', 'Description', 'Date', 'Category'])
@@ -31,12 +33,13 @@ class MyLedger(SimpleLedger):
 
 if __name__ == "__main__":
     test = MyLedger()
-    test.record(82 , '開箱子' , "4/28" , '娛樂')
-    test.record(75 , '早餐' , '4/29' , '飲食')
-    test.record(150 , '晚餐' , '4/30' , '飲食')
-    test.record(130 , '晚餐' , '4/31' , '飲食')
-    test.record(65 , '火車' , '4/31' , '交通')
-    test.record(30 , '公車' , '4/31' , '交通')
+    test.record(82 , '開箱子' , 4.28 , '娛樂')
+    test.record(150 , '晚餐' , 4.30 , '飲食')
+    test.record(130 , '晚餐' , 4.31 , '飲食')
+    test.record(65 , '火車' , 4.31 , '交通')
+    test.record(30 , '公車' , 4.31 , '交通')
+    test.record(75 , '早餐' , 4.29 , '飲食')
+    test.record(5000 , '早餐' , 4.25 , '飲食')
 
     while 1:
         print('--'*15)
@@ -44,7 +47,7 @@ if __name__ == "__main__":
         if choice == 1:
             amount = float(input("金額: "))
             desc = input("描述: ")
-            date = input("日期: ")
+            date = float(input("日期: "))
             cate = input('類別: ')
             test.record(amount, desc, date, cate)
 
@@ -62,8 +65,8 @@ if __name__ == "__main__":
 
                 if temp == 2:
                     print('--'*15)
-                    start = input("開始日期: ")
-                    end = input('結束日期: ')
+                    start = float(input("開始日期: "))
+                    end = float(input('結束日期: '))
                     test.list_by_date(start , end)
                     print('--'*15)
                 if temp == 3:
