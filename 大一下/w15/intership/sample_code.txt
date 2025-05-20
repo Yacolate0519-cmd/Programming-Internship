@@ -1,0 +1,8 @@
+def good_function()
+    print("Hello")
+    
+if x > 10
+    print("Greater")
+
+for i range(5)
+    print(i)
